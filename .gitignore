@@ -17,6 +17,9 @@
 /out/
 next-env.d.ts
 
+# jetbrains
+.idea
+
 # production
 /build
 
