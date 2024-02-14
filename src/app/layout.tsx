@@ -27,7 +27,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${calsans.className}`}>{children}</body>
+      <body className={`${calsans.className} w-full bg-black/[0.96] `}>
+        {children}
+      </body>
     </html>
   );
 }
