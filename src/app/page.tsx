@@ -1,53 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { Spotlight } from "../../components/ui/Spotlight";
+
+const navigation: { name: string; href: string }[] = [
+  { name: "Projects", href: "/projects" },
+  { name: "Skills", href: "/skills" },
+  { name: "Contact Me", href: "/contact-me" },
+];
 
 export default function HomePage() {
-  const [cmd, setCmd] = useState<string>("");
-
-  function handleEnter(command: string): void {
-    switch (command) {
-      case "help":
-        console.log("help");
-        break;
-      case "projects":
-        console.log("projects");
-        break;
-      case "about-me" || "about":
-        console.log("about");
-        break;
-      case "experience" || "cv":
-        console.log("experience");
-        break;
-      case "contact-me" || "contact":
-        console.log("contact");
-        break;
-      default:
-        console.log("Invalid command");
-        break;
-    }
-  }
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className={"flex flex-row items-center justify-center"}>
-        <input
-          type="text"
-          placeholder="Type something"
-          onChange={(e) => setCmd(e.target.value)}
-          className={
-            "mr-8 w-96 rounded-md border border-violet-500 bg-violet-400 p-3 text-2xl tracking-wide text-black shadow-[8px_5px_8px_rgba(0,0,0,1)] placeholder:text-slate-700 focus:outline-0"
-          }
+    <>
+      <div className="bg-grid-white/[0.02] relative flex h-screen w-full overflow-hidden  bg-black/[0.96] antialiased md:items-center md:justify-center">
+        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:28px_28px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+        <Spotlight
+          className="-top-40 left-0 md:-top-20 md:left-60"
+          fill="white"
         />
-        <button
-          className={
-            "inline-flex h-[65px] w-[120px] flex-row flex-nowrap rounded-[8px] border-2 border-x-[9px] border-b-[18px] border-[#1D1F22] border-x-[#27292d] border-b-[#1D1F22] bg-[#16171a] shadow-[5px_6px_8px_rgba(0,0,0,1)] brightness-125 transition-all duration-200 ease-in-out hover:brightness-110 active:translate-y-[2px] active:scale-95  active:shadow-none"
-          }
-          onClick={() => handleEnter(cmd)}
-        >
-          <span className={"ml-2 mt-0.5 text-lg"}>Enter</span>
-        </button>
+        <div className=" relative z-10  mx-auto w-full max-w-7xl  p-4 pt-20 md:pt-0">
+          <h1 className="bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-center text-4xl font-bold text-transparent md:text-7xl">
+            Koustav Mondal <br />
+          </h1>
+          <p className="mx-auto mt-4 max-w-xl text-center text-xl font-light text-neutral-400 ">
+            I&apos;m a self-taught developer proficient in both Flutter and
+            backend development. With a passion for crafting seamless and
+            powerful applications, I thrive on learning new technologies and
+            constantly pushing my skills further. I believe my self-driven
+            nature and commitment to excellence make me a valuable asset to any
+            team.
+          </p>
+        </div>
       </div>
-    </main>
+    </>
   );
 }
