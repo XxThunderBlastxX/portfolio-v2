@@ -11,6 +11,9 @@ dependencies:
   '@tabler/icons-react':
     specifier: ^2.47.0
     version: 2.47.0(react@18.2.0)
+  awesome-snackbar:
+    specifier: ^2.0.7
+    version: 2.0.7
   axios:
     specifier: ^1.6.7
     version: 1.6.7
@@ -773,6 +776,10 @@ packages:
     resolution: {integrity: sha512-j1QzY8iPNPG4o4xmO3ptzpRxTciqD3MgEHtifP/YnJpIo58Xu+ne4BejlbkuaLfXn/nz6HFiw29bLpj2PNMdGg==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /awesome-snackbar@2.0.7:
+    resolution: {integrity: sha512-5UxE5Vgw+E+PcG5rVgFCPaLNj1P3N9uLkOvHqTvs2LL6x09YAJLZ2yv5XKkdTE7941GkC2L8BQvV5vaaif2XHw==}
+    dev: false
 
   /axe-core@4.7.0:
     resolution: {integrity: sha512-M0JtH+hlOL5pLQwHOLNYZaXuhqmvS8oExsqB1SBYgA4Dk7u/xx+YdGHXaK5pyUfed5mYXdlYiphWq3G8cRi5JQ==}

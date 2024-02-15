@@ -1,0 +1,7 @@
+# Jetbrains
+.idea
+
+
+# Misc
+.env
+.DS_Store

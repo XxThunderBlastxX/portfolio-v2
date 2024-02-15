@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
+import Snackbar from "awesome-snackbar";
 
 function ContactForm() {
   const [contactForm, setContactForm] = useState({
@@ -29,14 +30,20 @@ function ContactForm() {
       .then((res) => {
         if (res.status === 200) {
           setIsLoading(false);
-          alert("Message sent successfully");
-          return;
+          new Snackbar("Message sent successfully", {
+            position: "bottom-right",
+            timeout: 3000,
+            actionText: "X",
+          });
         }
       })
       .catch((err) => {
         setIsLoading(false);
-        alert("Message sending failed" + err);
-        return;
+        new Snackbar("Opps!! Something went wrong !!!", {
+          position: "bottom-right",
+          timeout: 30000,
+          actionText: "X",
+        });
       });
   }
 
