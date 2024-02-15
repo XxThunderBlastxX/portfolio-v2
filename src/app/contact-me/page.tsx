@@ -6,10 +6,11 @@ import {
   IconBrandLinkedin,
   IconMail,
 } from "@tabler/icons-react";
+import ContactForm from "../../../components/ui/contact-form";
 
 type SocialType = {
   name: string;
-  icon: JSX.Element;
+  icon: React.ReactElement;
   id: string;
   link: string;
 };
@@ -73,36 +74,7 @@ function ContactMe() {
           "m-auto max-w-2xl items-center justify-center rounded-2xl border-[1px] border-white/[0.45]"
         }
       >
-        <form className={"p-8"}>
-          <label className={"text-white"}>Name</label>
-          <input
-            type="text"
-            className={
-              "h-10 w-full rounded-md border-[1px] border-white/[0.45] bg-transparent px-2 py-4 text-white hover:border-white/[0.75] focus:border-white/[0.75]"
-            }
-          />
-          <label className={"text-white"}>Email</label>
-          <input
-            type="text"
-            className={
-              "h-10 w-full rounded-md border-[1px] border-white/[0.45] bg-transparent px-2 py-4 text-white hover:border-white/[0.75] focus:border-white/[0.75]"
-            }
-          />
-          <label className={"text-white"}>Message</label>
-          <textarea
-            className={
-              "h-20 w-full rounded-md border-[1px] border-white/[0.45] bg-transparent px-2 py-2 text-white hover:border-white/[0.75] focus:border-white/[0.75]"
-            }
-          />
-          <button
-            type="submit"
-            className={
-              "mt-4 h-10 w-full rounded-md bg-white text-black hover:border-[1px] hover:border-white hover:bg-black hover:bg-transparent hover:text-white"
-            }
-          >
-            Submit
-          </button>
-        </form>
+        <ContactForm />
       </div>
     </section>
   );

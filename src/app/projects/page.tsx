@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { HoverEffect } from "../../../components/ui/card-hover-effect";
+import { HoverEffect } from "../../../components/ui/card-hover-background-effect";
 import BackButton from "../../../components/ui/back-button";
 
 const projects = [
