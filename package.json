@@ -1,5 +1,5 @@
 {
-  "name": "temp",
+  "name": "portfolio-v2",
   "private": true,
   "scripts": {
     "build": "turbo build",
