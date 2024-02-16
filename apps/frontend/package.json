@@ -10,6 +10,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "react-hot-toast": "^2.4.1",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.10",
     "@t3-oss/env-nextjs": "^0.7.3",
     "@tabler/icons-react": "^2.47.0",
     "awesome-snackbar": "^2.0.7",

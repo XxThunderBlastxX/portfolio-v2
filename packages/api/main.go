@@ -36,7 +36,7 @@ func SendMail(m *Message) error {
 
 	// Message.
 	message := []byte(
-		"From:" + "Portfolio" + m.Name + "<api@koustav.dev>\r\n" +
+		"From:" + "Portfolio" + "<api@koustav.dev>\r\n" +
 			"To: me@koustav.dev\r\n" +
 			"Subject: New message from " + m.Name + "\r\n" +
 			mime +
