@@ -73,7 +73,7 @@ function ContactForm() {
             setContactForm({ ...contactForm, name: e.target.value })
           }
           className={
-            "h-10 w-full rounded-md border-[1px] border-white/[0.45] bg-transparent px-2 py-4 text-white hover:border-white/[0.75] focus:border-white/[0.75]"
+            "mb-2 h-10 w-full rounded-md border-[1px] border-white/[0.45] bg-transparent px-2 py-4 text-white hover:border-white/[0.75] focus:border-white/[0.75]"
           }
         />
         <label className={"text-white"}>Email</label>
@@ -87,7 +87,7 @@ function ContactForm() {
             setContactForm({ ...contactForm, email: e.target.value })
           }
           className={
-            "h-10 w-full rounded-md border-[1px] border-white/[0.45] bg-transparent px-2 py-4 text-white hover:border-white/[0.75] focus:border-white/[0.75]"
+            "mb-2 h-10 w-full rounded-md border-[1px] border-white/[0.45] bg-transparent px-2 py-4 text-white hover:border-white/[0.75] focus:border-white/[0.75]"
           }
         />
         <label className={"text-white"}>Message</label>
