@@ -1,37 +1,10 @@
 import React from "react";
 import BackButton from "../../../components/ui/back-button";
 import Link from "next/link";
-import {IconBrandGithub, IconBrandLinkedin, IconMail,} from "@tabler/icons-react";
 import ContactForm from "../../../components/ui/contact-form";
 import {Toaster} from "react-hot-toast";
+import socialConfig from "../../../config/social.config";
 
-type SocialType = {
-    name: string;
-    icon: React.ReactElement;
-    id: string;
-    link: string;
-};
-
-const socials: SocialType[] = [
-    {
-        name: "LinkedIn",
-        icon: <IconBrandLinkedin size={28} className={"mr-2 text-white"}/>,
-        id: "@Koustav Mondal",
-        link: "https://linkedin.com/in/koustav-mondal",
-    },
-    {
-        name: "Github",
-        icon: <IconBrandGithub size={28} className={"mr-2 text-white"}/>,
-        id: "@XxThunderBlastxX",
-        link: "https://github.com/XxThunderBlastxX",
-    },
-    {
-        name: "Email",
-        icon: <IconMail size={28} className={"mr-2 text-white"}/>,
-        id: "me@koustav.dev",
-        link: "mailto:me@koustav.dev",
-    },
-];
 
 function ContactMe() {
     return (
@@ -51,7 +24,7 @@ function ContactMe() {
             <ul
                 className={"mt-5 flex items-center justify-evenly text-lg text-white"}
             >
-                {socials.map((social, idx) => (
+                {socialConfig.map((social, idx) => (
                     <li key={idx}>
                         <Link
                             href={social.link}
