@@ -13,11 +13,7 @@ import (
 	"os"
 )
 
-type Message struct {
-	Name    string `json:"name"`
-	Email   string `json:"email"`
-	Message string `json:"message"`
-}
+var l = NewLogger()
 
 func SendMail(m *Message) error {
 	// Sender data.
@@ -58,38 +54,6 @@ func SendMail(m *Message) error {
 	return nil
 }
 
-func main() {
-	if err := godotenv.Load(); err != nil {
-		panic(err)
-	}
-
-	app := fiber.New()
-
-	app.Use(cors.New())
-
-	app.Post("/send-message", verifyTokenMiddleware, func(c *fiber.Ctx) error {
-		m := Message{}
-
-		if err := c.BodyParser(&m); err != nil {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-				"message": "Invalid request",
-			})
-		}
-
-		if err := SendMail(&m); err != nil {
-			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-				"message": "Failed to send message",
-			})
-		}
-
-		return c.Status(fiber.StatusOK).JSON(fiber.Map{
-			"message": "Message sent",
-		})
-	})
-
-	log.Fatal(app.Listen(os.Getenv("PORT")))
-}
-
 func verifyTokenMiddleware(c *fiber.Ctx) error {
 	var r VerifyTokenRes
 	verifyUrl := "https://challenges.cloudflare.com/turnstile/v0/siteverify"
@@ -108,32 +72,68 @@ func verifyTokenMiddleware(c *fiber.Ctx) error {
 
 	res, err := http.Post(verifyUrl, "application/json", body)
 	if err != nil {
+		l.Error("Error while verifying token: " + err.Error())
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 			"message": "Invalid token",
 		})
 	}
 
 	if err := json.NewDecoder(res.Body).Decode(&r); err != nil {
+		l.Error("Error while decoding response: " + err.Error())
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 			"message": "Invalid token",
 		})
 	}
 
 	if !r.Success {
+		l.Error("Invalid token")
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 			"message": "Invalid token",
 		})
 	}
+	l.Info("Token verified")
 
 	return c.Next()
 }
 
-type VerifyTokenReq struct {
-	Secret   string `json:"secret" form:"secret"`
-	Response string `json:"response" form:"response"`
-	RemoteIp string `json:"remoteip" form:"remoteip"`
-}
+func main() {
+	if err := godotenv.Load(); err != nil {
+		panic(err)
+	}
 
-type VerifyTokenRes struct {
-	Success bool `json:"success"`
+	app := fiber.New()
+
+	app.Use(cors.New(cors.Config{AllowOrigins: "https://koustav.dev, https://www.koustav.dev"}))
+
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.Status(fiber.StatusOK).JSON(fiber.Map{
+			"message": "Portfolio API",
+			"status":  "OK",
+		})
+	})
+
+	app.Post("/send-message", verifyTokenMiddleware, func(c *fiber.Ctx) error {
+		m := Message{}
+
+		if err := c.BodyParser(&m); err != nil {
+			l.Error("Invalid request: " + err.Error())
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"message": "Invalid request",
+			})
+		}
+
+		if err := SendMail(&m); err != nil {
+			l.Error("Failed to send message: " + err.Error())
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"message": "Failed to send message",
+			})
+		}
+
+		l.Info("Message sent")
+		return c.Status(fiber.StatusOK).JSON(fiber.Map{
+			"message": "Message sent",
+		})
+	})
+
+	log.Fatal(app.Listen(os.Getenv("PORT")))
 }
