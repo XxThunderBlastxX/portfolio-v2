@@ -1,7 +1,7 @@
 import React from "react";
-import { HoverEffect } from "../../../components/ui/card-hover-background-effect";
-import BackButton from "../../../components/ui/back-button";
-import projectConfig from "../../../config/projects.config";
+import { HoverEffect } from "@/ui/card-hover-background-effect";
+import BackButton from "@/ui/back-button";
+import projectConfig from "config/projects.config";
 
 function Projects() {
   return (

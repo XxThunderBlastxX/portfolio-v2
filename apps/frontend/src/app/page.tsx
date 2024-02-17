@@ -1,8 +1,6 @@
-"use client";
-
-import { Spotlight } from "../../components/ui/spotlight";
+import { Spotlight } from "@/ui/spotlight";
 import React from "react";
-import Button from "../../components/ui/button";
+import Button from "@/ui/button";
 import Link from "next/link";
 
 const navigation: { name: string; href: string }[] = [

@@ -1,9 +1,9 @@
 import React from "react";
-import BackButton from "../../../components/ui/back-button";
+import BackButton from "@/ui/back-button";
 import Link from "next/link";
-import ContactForm from "../../../components/ui/contact-form";
+import ContactForm from "@/ui/contact-form";
 import { Toaster } from "react-hot-toast";
-import socialConfig from "../../../config/social.config";
+import socialConfig from "config/social.config";
 
 function ContactMe() {
   return (

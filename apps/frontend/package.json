@@ -10,7 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "react-hot-toast": "^2.4.1",
+    "@marsidev/react-turnstile": "^0.5.2",
     "@t3-oss/env-nextjs": "^0.7.3",
     "@tabler/icons-react": "^2.47.0",
     "axios": "^1.6.7",
@@ -20,6 +20,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-element-to-jsx-string": "^15.0.0",
+    "react-hot-toast": "^2.4.1",
     "react-spinners": "^0.13.8",
     "tailwind-merge": "^2.2.1",
     "zod": "^3.22.4"

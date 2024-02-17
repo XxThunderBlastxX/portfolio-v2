@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-hot-toast";
+import { Turnstile } from "@marsidev/react-turnstile";
+import { env } from "~/env";
 
 type ContactFormType = {
   name: string;
@@ -19,6 +21,8 @@ function ContactForm() {
   } as ContactFormType);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [token, setToken] = useState("");
+  const [isTokenValid, setIsTokenValid] = useState(false);
 
   async function submitContactForm() {
     setIsLoading(true);
@@ -31,13 +35,14 @@ function ContactForm() {
 
     try {
       const response: AxiosResponse = await axios.post(
-        "https://portfolio-api.koustav.dev/send-message",
+        "http://localhost:8080/send-message",
         {
           ...data,
         },
         {
           headers: {
             "Content-Type": "application/json",
+            "cf-turnstile-response": token,
           },
           method: "POST",
         },
@@ -45,6 +50,10 @@ function ContactForm() {
 
       if (response.status == 200) {
         toast.success("Message sent successfully");
+      }
+
+      if (response.status == 401) {
+        toast.error("Opps!! Invalid Captcha");
       }
     } catch (err) {
       toast.error("Failed to send message");
@@ -56,7 +65,7 @@ function ContactForm() {
   return (
     <>
       <form
-        className={"p-8"}
+        className={" p-8"}
         onSubmit={async (e) => {
           e.preventDefault();
           await submitContactForm();
@@ -103,8 +112,21 @@ function ContactForm() {
             "h-20 w-full rounded-md border-[1px] border-white/[0.45] bg-transparent px-2 py-2 text-white hover:border-white/[0.75] focus:border-white/[0.75]"
           }
         />
+        <Turnstile
+          siteKey={env.NEXT_PUBLIC_SITE_KEY}
+          className={"pt-2"}
+          options={{
+            theme: "dark",
+            size: "normal",
+          }}
+          onSuccess={(token) => {
+            console.log(token);
+            setToken(token);
+          }}
+        />
         <button
           type="submit"
+          disabled={token.length === 0}
           className={
             "mt-4 h-10 w-full rounded-md bg-white text-black hover:border-[1px] hover:border-white hover:bg-black hover:bg-transparent hover:text-white"
           }

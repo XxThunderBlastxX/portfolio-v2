@@ -1,7 +1,7 @@
 import React from "react";
-import BackButton from "../../../components/ui/back-button";
-import SkillCard from "../../../components/ui/skill-card";
-import skills from "../../../config/skills.config";
+import BackButton from "@/ui/back-button";
+import SkillCard from "@/ui/skill-card";
+import skills from "config/skills.config";
 
 function Skills() {
   return (
