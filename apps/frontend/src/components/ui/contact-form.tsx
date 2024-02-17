@@ -6,12 +6,9 @@ import { ClipLoader } from "react-spinners";
 import { toast } from "react-hot-toast";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { env } from "~/env";
+import ContactFormType from "~/types/contactForm.type";
 
-type ContactFormType = {
-  name: string;
-  email: string;
-  message: string;
-};
+type TokenStatusType = "solved" | "expired" | "error" | null;
 
 function ContactForm() {
   const [contactForm, setContactForm] = useState({
@@ -19,10 +16,9 @@ function ContactForm() {
     email: "",
     message: "",
   } as ContactFormType);
-
   const [isLoading, setIsLoading] = useState(false);
   const [token, setToken] = useState("");
-  const [isTokenValid, setIsTokenValid] = useState(false);
+  const [tokenStatus, setTokenStatus] = useState<TokenStatusType>(null);
 
   async function submitContactForm() {
     setIsLoading(true);
@@ -35,7 +31,7 @@ function ContactForm() {
 
     try {
       const response: AxiosResponse = await axios.post(
-        "http://localhost:8080/send-message",
+        "https://portfolio-api.koustav.dev/send-message",
         {
           ...data,
         },
@@ -120,13 +116,19 @@ function ContactForm() {
             size: "normal",
           }}
           onSuccess={(token) => {
-            console.log(token);
             setToken(token);
+            setTokenStatus("solved");
+          }}
+          onExpire={() => {
+            setTokenStatus("expired");
+          }}
+          onError={() => {
+            setTokenStatus("error");
           }}
         />
         <button
           type="submit"
-          disabled={token.length === 0}
+          disabled={token.length === 0 && tokenStatus !== "solved"}
           className={
             "mt-4 h-10 w-full rounded-md bg-white text-black hover:border-[1px] hover:border-white hover:bg-black hover:bg-transparent hover:text-white"
           }

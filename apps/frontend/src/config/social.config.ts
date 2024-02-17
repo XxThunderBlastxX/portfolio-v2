@@ -3,7 +3,7 @@ import {
   IconBrandLinkedin,
   IconMail,
 } from "@tabler/icons-react";
-import SocialType from "../types/social.type";
+import SocialType from "~/types/social.type";
 import React from "react";
 
 const socialConfig: SocialType[] = [

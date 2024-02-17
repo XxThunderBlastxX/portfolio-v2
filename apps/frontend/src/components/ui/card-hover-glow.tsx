@@ -1,6 +1,6 @@
 "use client";
-import { motion, useMotionTemplate, useSpring } from "framer-motion";
 
+import { motion, useMotionTemplate, useSpring } from "framer-motion";
 import React, { type PropsWithChildren } from "react";
 
 export const CardHoverGlow: React.FC<PropsWithChildren> = ({ children }) => {

@@ -27,10 +27,6 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"],
-      "@/*" : ["./components/*"],
-      "config/*" : ["./config/*"],
-      "types/*" : ["./types/*"],
-      "utils/*" : ["./utils/*"],
     }
   },
   "include": [

@@ -1,4 +1,4 @@
-import SkillType from "../types/skills.type";
+import SkillType from "~/types/skills.type";
 
 const mobileDevConfig: SkillType[] = [
   { name: "Flutter", icon: "/icons/flutter.svg" },
