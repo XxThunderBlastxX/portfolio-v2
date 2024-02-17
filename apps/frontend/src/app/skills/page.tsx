@@ -7,7 +7,7 @@ function Skills() {
   return (
     <section
       className={
-        "h-screen w-full bg-gradient-to-tl from-black via-zinc-900/90 to-black px-12"
+        "w-full bg-gradient-to-tl from-black via-zinc-900/90 to-black px-12 sm:h-screen"
       }
     >
       <BackButton />
@@ -17,7 +17,11 @@ function Skills() {
           Here are some of the skills I have acquired over the years.
         </p>
       </div>
-      <div className={"my-8 grid grid-cols-2 grid-rows-2 gap-6"}>
+      <div
+        className={
+          "xl::max-w-screen-2xl m-auto my-8 grid grid-cols-1 grid-rows-2 gap-6 sm:w-full sm:max-w-screen-xl sm:grid-cols-2 sm:items-center sm:justify-center"
+        }
+      >
         <SkillCard
           title={"Mobile App Development"}
           skill={skills.mobileDevConfig}
