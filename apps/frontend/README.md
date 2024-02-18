@@ -1,28 +1,82 @@
-# Create T3 App
+# Koustav Mondal - Portfolio
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+<img alt="next-badge" src="https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white">
+<img alt="tailwind-badge" src="https://img.shields.io/badge/Tailwind%20CSS-06B6D4.svg?style=for-the-badge&logo=Tailwind-CSS&logoColor=white">
+<img alt="ts-badge" src="https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white">
+<img alt="vercel-badge" src="https://img.shields.io/badge/Vercel-000000.svg?style=for-the-badge&logo=Vercel&logoColor=white">
+<img alt="pnpm-badge" src="https://img.shields.io/badge/pnpm-F69220.svg?style=for-the-badge&logo=pnpm&logoColor=white">
+<img alt="framer-badge" src="https://img.shields.io/badge/Framer-0055FF.svg?style=for-the-badge&logo=Framer&logoColor=white">
+<br></br>
+<a href="https://koustav.dev">
+    <img src="./public/images/banner.png" alt="portfolio-banner">
+</a>
 
-## What's next? How do I make an app with this?
+## 🚀 Quick start
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+1. **Clone the repository.**
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+   ```shell
+   git clone https://github.com/XxThunderBlastxX/portfolio-v2.git
+   ```
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+2. **Navigate into the directory.**
 
-## Learn More
+   ```shell
+   cd portfolio-v2/app/frontend
+   ```
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+3. **Copy the environment variables.**
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+   ```shell
+   cp .env.example .env
+   ```
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+4. **Install the dependencies.**
 
-## How do I deploy this?
+   ```shell
+   pnpm i
+   ```
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+5. **Start the development server.**
+
+   ```shell
+   pnpm dev
+   ```
+
+## 🧐 What's inside?
+
+A quick look at the top-level files and directories you'll see in this project.
+
+    .
+    ├── public
+    ├── src
+    |   ├── app
+    |   ├── components
+    |   ├── config
+    |   ├── styles
+    |   ├── types
+    |   ├── utils
+    ├── .gitignore
+    ├── .prettierrc
+    ├── next.config.js
+    ├── package-lock.json
+    ├── package.json
+    ├── README.md
+    └── tailwind.config.js
+
+## 🌐 What's the website about?
+
+This is my portfolio website built using Next.js, Tailwind CSS, and TypeScript. The website design is kept minimalistic
+with animations and responsive for mobile. The website is hosted on Vercel.
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📧 Contact
+
+Koustav Mondal -
+[me@koustav.dev](mailto:me@koustav.dev)<br>
+Discord - `_thunderblast_`
+
+
