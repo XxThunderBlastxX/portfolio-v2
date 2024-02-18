@@ -1,12 +1,12 @@
 # ✨ Welcome to my Portfolio Monorepo
 
-<img alt="turbo-badge" src="https://img.shields.io/badge/Turborepo-EF4444.svg?style=for-the-badge&logo=Turborepo&logoColor=white">
-<img alt="next-badge" src="https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white">
-<img src="https://img.shields.io/badge/Go-00ADD8.svg?style=for-the-badge&logo=Go&logoColor=white" alt="go-badge">
+![](https://img.shields.io/badge/Turborepo-EF4444.svg?style=for-the-badge&logo=Turborepo&logoColor=white)
+![](https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![](https://img.shields.io/badge/Go-00ADD8.svg?style=for-the-badge&logo=Go&logoColor=white)
 
 This is a monorepo for my portfolio website. It contains the following repo:
 
-- [Frontend](app/frontend/README.md)
+- [Frontend](apps/frontend/README.md)
 - [API](packages/api/README.md)
 
 
