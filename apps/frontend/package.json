@@ -1,6 +1,6 @@
 {
-  "name": "portfolio-v2",
-  "version": "0.1.0",
+  "name": "thunderblast-portfolio-v2",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,6 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.5.3",
     "@marsidev/react-turnstile": "^0.5.2",
     "@t3-oss/env-nextjs": "^0.7.3",
     "@tabler/icons-react": "^2.47.0",

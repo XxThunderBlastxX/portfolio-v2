@@ -1,14 +1,8 @@
 import "~/styles/globals.css";
 
-import localFont from "next/font/local";
 import { Metadata } from "next";
 import React from "react";
-
-const calsans = localFont({
-  src: "./fonts/CalSans-SemiBold.woff",
-  weight: "400",
-  preload: true,
-});
+import { calsans } from "~/app/fonts";
 
 export const metadata: Metadata = {
   title: "Koustav Mondal | Flutter Developer | Go Developer",
