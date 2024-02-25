@@ -7,6 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
+	"html/template"
 	"log"
 	"net/http"
 	"net/smtp"
@@ -23,7 +24,7 @@ func SendMail(m *Message) error {
 	// Receiver email address.
 	to := []string{
 		"me@koustav.dev",
-		"koustavmondal55@gmail.com",
+		//"koustavmondal55@gmail.com",
 	}
 
 	// smtp server configuration.
@@ -33,13 +34,24 @@ func SendMail(m *Message) error {
 	// MIME type
 	mime := "Content-Type: text/html; charset=UTF-8\r\n\r\n"
 
+	htmlBuff, htmlErr := os.ReadFile("./template/message_tmpl.html")
+	if htmlErr != nil {
+		l.Error("Error while reading template: " + htmlErr.Error())
+	}
+	htmlTmpl := string(htmlBuff)
+
+	tmpl, _ := template.New("message").Parse(htmlTmpl)
+
+	buff := new(bytes.Buffer)
+	tmpl.Execute(buff, m)
+
 	// Message.
 	message := []byte(
 		"From:" + "Portfolio" + "<api@koustav.dev>\r\n" +
 			"To: me@koustav.dev\r\n" +
 			"Subject: New message from " + m.Name + "\r\n" +
 			mime +
-			m.Message + "\r\n")
+			buff.String() + "\r\n")
 
 	// Authentication.
 	auth := smtp.PlainAuth("", from, password, smtpHost)
