@@ -24,7 +24,7 @@ func SendMail(m *Message) error {
 	// Receiver email address.
 	to := []string{
 		"me@koustav.dev",
-		//"koustavmondal55@gmail.com",
+		"koustavmondal55@gmail.com",
 	}
 
 	// smtp server configuration.
