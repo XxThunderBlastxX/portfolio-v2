@@ -3,7 +3,14 @@
 @tailwind utilities;
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+.spinner-btn:hover span {
+    border-color: white !important;
+    border-bottom-color: transparent !important;
+}
+
+
