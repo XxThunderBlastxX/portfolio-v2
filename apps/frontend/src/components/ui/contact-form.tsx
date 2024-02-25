@@ -130,10 +130,10 @@ function ContactForm() {
           type="submit"
           disabled={token.length === 0 && tokenStatus !== "solved"}
           className={
-            "mt-4 h-10 w-full rounded-md bg-white text-black hover:border-[1px] hover:border-white hover:bg-black hover:bg-transparent hover:text-white"
+            "spinner-btn mt-4 h-10 w-full rounded-md bg-white text-black hover:border-[1px] hover:border-white hover:bg-black hover:bg-transparent hover:text-white"
           }
         >
-          {isLoading ? <ClipLoader color={"white"} size={26} /> : "Submit"}
+          {isLoading ? <ClipLoader size={26} /> : "Submit"}
         </button>
       </form>
     </>
