@@ -31,7 +31,7 @@ function Skills() {
           skill={skills.backendDevConfig}
         />
         <SkillCard title={"Web Development"} skill={skills.webDevConfig} />
-        <SkillCard title={"Languages"} skill={skills.langsConfig} />
+        <SkillCard title={"Languages"} skill={skills.langConfig} />
       </div>
     </section>
   );

@@ -1,6 +1,9 @@
-type SkillType = {
-  name: string;
-  icon: string;
-};
+import { z } from "zod";
 
-export default SkillType;
+const SkillSchema = z.object({
+  name: z.string(),
+  icon: z.string(),
+});
+
+export default SkillSchema;
+export type SkillType = z.infer<typeof SkillSchema>;
