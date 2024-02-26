@@ -6,7 +6,7 @@ import { ClipLoader } from "react-spinners";
 import { toast } from "react-hot-toast";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { env } from "~/env";
-import ContactFormType from "~/types/contactForm.type";
+import ContactFormSchema, { ContactFormType } from "~/types/contactForm.type";
 
 type TokenStatusType = "solved" | "expired" | "error" | null;
 
@@ -23,18 +23,12 @@ function ContactForm() {
   async function submitContactForm() {
     setIsLoading(true);
 
-    const data: ContactFormType = {
-      name: contactForm.name.trim(),
-      email: contactForm.email.trim(),
-      message: contactForm.message.trim(),
-    };
-
     try {
+      const formData = ContactFormSchema.parse(contactForm);
+
       const response: AxiosResponse = await axios.post(
         "https://portfolio-api.koustav.dev/send-message",
-        {
-          ...data,
-        },
+        formData,
         {
           headers: {
             "Content-Type": "application/json",

@@ -1,7 +1,10 @@
-import SkillType from "~/types/skills.type";
+import { SkillType } from "~/types/skills.type";
 
 const mobileDevConfig: SkillType[] = [
-  { name: "Flutter", icon: "/icons/flutter.svg" },
+  {
+    name: "Flutter",
+    icon: "/icons/flutter.svg",
+  },
 ];
 
 const backendDevConfig: SkillType[] = [
@@ -21,7 +24,7 @@ const webDevConfig: SkillType[] = [
   { name: "React", icon: "/icons/react.svg" },
 ];
 
-const langsConfig: SkillType[] = [
+const langConfig: SkillType[] = [
   { name: "Golang", icon: "/icons/golang.svg" },
   { name: "Dart", icon: "/icons/dart.svg" },
   { name: "Python", icon: "/icons/python.svg" },
@@ -31,4 +34,4 @@ const langsConfig: SkillType[] = [
   { name: "C++", icon: "/icons/cpp.svg" },
 ];
 
-export default { mobileDevConfig, backendDevConfig, webDevConfig, langsConfig };
+export default { mobileDevConfig, backendDevConfig, webDevConfig, langConfig };

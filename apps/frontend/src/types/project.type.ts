@@ -1,8 +1,11 @@
-type ProjectType = {
-  title: string;
-  description: string;
-  stack: string[];
-  link: string;
-};
+import { z } from "zod";
 
-export default ProjectType;
+const ProjectSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  stack: z.array(z.string()),
+  link: z.string(),
+});
+
+export default ProjectSchema;
+export type ProjectType = z.infer<typeof ProjectSchema>;

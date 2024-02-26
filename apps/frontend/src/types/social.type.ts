@@ -1,10 +1,12 @@
 import React from "react";
+import { z } from "zod";
 
-type SocialType = {
-  name: string;
-  icon: React.ReactElement;
-  id: string;
-  link: string;
-};
+const SocialSchema = z.object({
+  name: z.string(),
+  icon: z.custom<React.ReactElement>(),
+  id: z.string(),
+  link: z.string(),
+});
 
-export default SocialType;
+export default SocialSchema;
+export type SocialType = z.infer<typeof SocialSchema>;
