@@ -27,7 +27,7 @@ function ContactForm() {
       const formData = ContactFormSchema.parse(contactForm);
 
       const response: AxiosResponse = await axios.post(
-        "https://portfolio-api.koustav.dev/send-message",
+        "https://api.koustav.dev/contact_me",
         formData,
         {
           headers: {
