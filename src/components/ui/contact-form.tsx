@@ -1,76 +1,42 @@
 "use client";
 
-import React, { useState } from "react";
-import axios, { AxiosResponse } from "axios";
-import { ClipLoader } from "react-spinners";
-import { toast } from "react-hot-toast";
+import React, { useRef, useState } from "react";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { env } from "~/env";
-import ContactFormSchema, { ContactFormType } from "~/types/contactForm.type";
+import submitContactForm from "~/components/actions/contact_form_action";
+import toast from "react-hot-toast";
+import SubmitButton from "~/components/ui/submit-button";
 
-type TokenStatusType = "solved" | "expired" | "error" | null;
+export enum TokenStatus {
+  solved,
+  expired,
+  error,
+}
 
 function ContactForm() {
-  const [contactForm, setContactForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  } as ContactFormType);
-  const [isLoading, setIsLoading] = useState(false);
   const [token, setToken] = useState("");
-  const [tokenStatus, setTokenStatus] = useState<TokenStatusType>(null);
+  const [tokenStatus, setTokenStatus] = useState<TokenStatus>(null);
+  const formRef = useRef<HTMLFormElement | null>(null);
 
-  async function submitContactForm() {
-    setIsLoading(true);
-
+  async function onClickSubmitAction(formData: FormData) {
+    formRef.current?.reset();
     try {
-      const formData = ContactFormSchema.parse(contactForm);
-
-      const response: AxiosResponse = await axios.post(
-        "https://api.koustav.dev/contact_me",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "cf-turnstile-response": token,
-          },
-          method: "POST",
-        },
-      );
-
-      if (response.status == 200) {
-        toast.success("Message sent successfully");
-      }
-
-      if (response.status == 401) {
-        toast.error("Opps!! Invalid Captcha");
-      }
+      await submitContactForm(formData, token);
+      toast.success("Email sent successfully");
     } catch (err) {
-      toast.error("Failed to send message");
-    } finally {
-      setIsLoading(false);
+      toast.error("Ops!! Failed to send");
     }
   }
 
   return (
     <>
-      <form
-        className={" p-8"}
-        onSubmit={async (e) => {
-          e.preventDefault();
-          await submitContactForm();
-        }}
-      >
+      <form className={" p-8"} action={onClickSubmitAction} ref={formRef}>
         <label className={"text-white"}>Name</label>
         <input
           type="text"
           required={true}
           name={"name"}
-          value={contactForm.name}
           placeholder={"Enter your name"}
-          onChange={(e) =>
-            setContactForm({ ...contactForm, name: e.target.value })
-          }
           className={
             "mb-2 h-10 w-full rounded-md border-[1px] border-white/[0.45] bg-transparent px-2 py-4 text-white hover:border-white/[0.75] focus:border-white/[0.75]"
           }
@@ -80,11 +46,7 @@ function ContactForm() {
           type="email"
           required={true}
           name={"email"}
-          value={contactForm.email}
           placeholder={"Enter your email"}
-          onChange={(e) =>
-            setContactForm({ ...contactForm, email: e.target.value })
-          }
           className={
             "mb-2 h-10 w-full rounded-md border-[1px] border-white/[0.45] bg-transparent px-2 py-4 text-white hover:border-white/[0.75] focus:border-white/[0.75]"
           }
@@ -93,10 +55,6 @@ function ContactForm() {
         <textarea
           required={true}
           name={"message"}
-          value={contactForm.message}
-          onChange={(e) =>
-            setContactForm({ ...contactForm, message: e.target.value })
-          }
           placeholder={"Enter your message"}
           className={
             "h-20 w-full rounded-md border-[1px] border-white/[0.45] bg-transparent px-2 py-2 text-white hover:border-white/[0.75] focus:border-white/[0.75]"
@@ -105,30 +63,18 @@ function ContactForm() {
         <Turnstile
           siteKey={env.NEXT_PUBLIC_SITE_KEY}
           className={"pt-2"}
-          options={{
-            theme: "dark",
-            size: "normal",
-          }}
           onSuccess={(token) => {
             setToken(token);
-            setTokenStatus("solved");
+            setTokenStatus(TokenStatus.solved);
           }}
           onExpire={() => {
-            setTokenStatus("expired");
+            setTokenStatus(TokenStatus.expired);
           }}
           onError={() => {
-            setTokenStatus("error");
+            setTokenStatus(TokenStatus.error);
           }}
         />
-        <button
-          type="submit"
-          disabled={token.length === 0 && tokenStatus !== "solved"}
-          className={
-            "spinner-btn mt-4 h-10 w-full rounded-md bg-white text-black hover:border-[1px] hover:border-white hover:bg-black hover:bg-transparent hover:text-white"
-          }
-        >
-          {isLoading ? <ClipLoader size={26} /> : "Submit"}
-        </button>
+        <SubmitButton tokenStatus={tokenStatus} token={token} />
       </form>
     </>
   );
