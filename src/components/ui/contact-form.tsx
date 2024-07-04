@@ -15,7 +15,9 @@ export enum TokenStatus {
 
 function ContactForm() {
   const [token, setToken] = useState("");
-  const [tokenStatus, setTokenStatus] = useState<TokenStatus>(null);
+  const [tokenStatus, setTokenStatus] = useState<TokenStatus>(
+    TokenStatus.expired,
+  );
   const formRef = useRef<HTMLFormElement | null>(null);
 
   async function onClickSubmitAction(formData: FormData) {
