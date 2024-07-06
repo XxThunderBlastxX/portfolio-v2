@@ -48,13 +48,22 @@ export default async function submitContactForm(
     text: form.message,
   };
 
-  try {
-    await transporter.sendMail(mailOptions);
-    return { success: true, message: "Email sent" } as ContactFormResponseType;
-  } catch (err) {
-    return {
-      success: false,
-      message: "Failed to send email",
-    } as ContactFormResponseType;
-  }
+  await new Promise((resolve, reject) =>
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.error(err);
+        reject(err);
+        return {
+          success: false,
+          message: "Failed to send email",
+        } as ContactFormResponseType;
+      } else {
+        resolve(info);
+        return {
+          success: true,
+          message: "Email sent",
+        } as ContactFormResponseType;
+      }
+    }),
+  );
 }
