@@ -1,0 +1,8 @@
+
+
+tasks:
+  - name: Run app
+    init: pnpm install
+    command: pnpm dev
+
+
