@@ -1,9 +1,13 @@
 import React from "react";
-import { HoverEffect } from "~/components/ui/card-hover-background-effect";
 import BackButton from "~/components/ui/back-button";
-import projectConfig from "~/config/projects.config";
+import { HoverEffect } from "~/components/ui/card-hover-background-effect";
+import getProjects, {
+  type Project,
+} from "~/components/actions/projects_action";
 
-function Projects() {
+async function Projects() {
+  const projects: Project[] = await getProjects();
+
   return (
     <section
       className={
@@ -18,7 +22,7 @@ function Projects() {
         </p>
       </div>
       <div className="mx-auto max-w-5xl px-8">
-        <HoverEffect items={projectConfig} />
+        <HoverEffect items={projects} />
       </div>
     </section>
   );

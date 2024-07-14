@@ -4,17 +4,13 @@ import { cn } from "~/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import React, { useState } from "react";
+import { type Project } from "~/components/actions/projects_action";
 
 export const HoverEffect = ({
   items,
   className,
 }: {
-  items: {
-    title: string;
-    description: string;
-    stack: string[];
-    link: string;
-  }[];
+  items: Project[];
   className?: string;
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -22,7 +18,7 @@ export const HoverEffect = ({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 py-10  md:grid-cols-2 lg:grid-cols-3",
+        "grid grid-cols-1 py-10 md:grid-cols-2 lg:grid-cols-3",
         className,
       )}
     >
@@ -32,7 +28,7 @@ export const HoverEffect = ({
           key={item?.link}
           target="_blank"
           referrerPolicy={"no-referrer"}
-          className="group relative  block h-full w-full p-2"
+          className="group relative block h-full w-full p-2"
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -54,11 +50,11 @@ export const HoverEffect = ({
             )}
           </AnimatePresence>
           <Card>
-            <CardTitle>{item.title}</CardTitle>
+            <CardTitle>{item.name}</CardTitle>
             <CardDescription>{item.description}</CardDescription>
             <CardDescription>
               <b>Stack : </b>
-              {item.stack.join(", ")}
+              {item.stacks.join(", ")}
             </CardDescription>
           </Card>
         </Link>
@@ -87,6 +83,7 @@ export const Card = ({
     </div>
   );
 };
+
 export const CardTitle = ({
   className,
   children,
@@ -100,6 +97,7 @@ export const CardTitle = ({
     </h4>
   );
 };
+
 export const CardDescription = ({
   className,
   children,
