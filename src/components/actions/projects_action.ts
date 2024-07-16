@@ -44,9 +44,7 @@ function parseProjects(response: string): Project[] {
 export default async function getProjects(): Promise<Project[]> {
   try {
     const res = await fetch("https://api.koustav.dev/projects/list", {
-      next: {
-        revalidate: 60,
-      },
+      cache: "no-cache"
     });
 
     if (res.ok && res.status === 200) {

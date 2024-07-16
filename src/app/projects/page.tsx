@@ -11,7 +11,7 @@ async function Projects() {
   return (
     <section
       className={
-        "h-full w-full bg-gradient-to-tl from-black via-zinc-900/90 to-black px-12"
+        "min-h-[100vh] w-full  bg-gradient-to-tl from-black via-zinc-900/90 to-black px-12"
       }
     >
       <BackButton />

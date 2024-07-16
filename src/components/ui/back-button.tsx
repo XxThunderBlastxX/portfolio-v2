@@ -5,7 +5,7 @@ import { IconArrowLeft } from "@tabler/icons-react";
 function BackButton() {
   return (
     <>
-      <div className={"-mx-5 pt-6 text-white"}>
+      <div className={"-mx-5 pt-6 text-white max-w-7"}>
         <Link href={"/"}>
           <IconArrowLeft size={28} />
         </Link>
